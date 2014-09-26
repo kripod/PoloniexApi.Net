@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC5546FA-4F27-4A57-ABE0-2691D1E8B51C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jojatekok.PoloniexAPI</RootNamespace>
+    <AssemblyName>PoloniexApi.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\PoloniexApi.Net.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="General\CurrencyPair.cs" />
+    <Compile Include="MarketTools\OrderBook.Interface.cs" />
+    <Compile Include="MarketTools\OrderBook.cs" />
+    <Compile Include="PoloniexClient.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="General\ApiWebClient.cs" />
+    <Compile Include="General\Authenticator.cs" />
+    <Compile Include="General\Authenticator.Interface.cs" />
+    <Compile Include="General\JsonResponse.cs" />
+    <Compile Include="General\OrderType.cs" />
+    <Compile Include="MarketTools\MarketData.cs" />
+    <Compile Include="MarketTools\MarketData.Interface.cs" />
+    <Compile Include="MarketTools\MarketChartData.cs" />
+    <Compile Include="MarketTools\MarketChartData.Interface.cs" />
+    <Compile Include="MarketTools\MarketPeriod.cs" />
+    <Compile Include="MarketTools\Markets.cs" />
+    <Compile Include="MarketTools\Markets.Interface.cs" />
+    <Compile Include="MarketTools\Order.cs" />
+    <Compile Include="MarketTools\Order.Interface.cs" />
+    <Compile Include="MarketTools\Trade.cs" />
+    <Compile Include="MarketTools\Trade.Interface.cs" />
+    <Compile Include="TradingTools\Order.cs" />
+    <Compile Include="TradingTools\Order.Interface.cs" />
+    <Compile Include="TradingTools\Trade.cs" />
+    <Compile Include="TradingTools\Trade.Interface.cs" />
+    <Compile Include="TradingTools\Trading.cs" />
+    <Compile Include="TradingTools\Trading.Interface.cs" />
+    <Compile Include="WalletTools\Balance.cs" />
+    <Compile Include="WalletTools\Balance.Interface.cs" />
+    <Compile Include="WalletTools\DepositWithdrawalList.cs" />
+    <Compile Include="WalletTools\DepositWithdrawalList.Interface.cs" />
+    <Compile Include="WalletTools\GeneratedDepositAddress.Interface.cs" />
+    <Compile Include="WalletTools\GeneratedDepositAddress.cs" />
+    <Compile Include="WalletTools\Deposit.cs" />
+    <Compile Include="WalletTools\Deposit.Interface.cs" />
+    <Compile Include="WalletTools\Wallet.cs" />
+    <Compile Include="WalletTools\Wallet.Interface.cs" />
+    <Compile Include="WalletTools\Withdrawal.cs" />
+    <Compile Include="WalletTools\Withdrawal.Interface.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
