@@ -1,4 +1,4 @@
-# Poloniex API .NET
+# Poloniex API .NET [![Build status](https://ci.appveyor.com/api/projects/status/78q4otttko9v3cid)](https://ci.appveyor.com/project/JoJatekok/poloniexapi-net)
 This project makes your Microsoft .NET applications able to interact with the Application Programming Interface (API) of [Poloniex][].
 The class library is written in [C#][], and the demo project uses [XAML][] ([WPF][]). A [NuGet package of the project][] is also available.
 
