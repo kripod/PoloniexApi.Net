@@ -2,6 +2,8 @@
 {
     public class CurrencyPair
     {
+        private const char SeparatorCharacter = '_';
+
         public string BaseCurrency { get; private set; }
         public string QuoteCurrency { get; private set; }
 
@@ -11,9 +13,15 @@
             QuoteCurrency = quoteCurrency;
         }
 
+        public static CurrencyPair Parse(string currencyPair)
+        {
+            var valueSplit = currencyPair.Split(SeparatorCharacter);
+            return new CurrencyPair(valueSplit[0], valueSplit[1]);
+        }
+
         public override string ToString()
         {
-            return BaseCurrency + "_" + QuoteCurrency;
+            return BaseCurrency + SeparatorCharacter + QuoteCurrency;
         }
 
         public static bool operator ==(CurrencyPair a, CurrencyPair b)

@@ -69,6 +69,7 @@
     <Reference Include="System.Reactive.PlatformServices">
       <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="WampSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WampSharp.1.2.0.1-beta\lib\net45\WampSharp.dll</HintPath>

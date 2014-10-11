@@ -53,12 +53,6 @@ namespace Jojatekok.PoloniexAPI
             }
         }
 
-        internal static CurrencyPair ToCurrencyPair(this string value)
-        {
-            var valueSplit = value.Split('_');
-            return new CurrencyPair(valueSplit[0], valueSplit[1]);
-        }
-
         internal static string ToHttpPostString(this Dictionary<string, object> dictionary)
         {
             var output = string.Empty;

@@ -19,7 +19,7 @@ namespace Jojatekok.PoloniexAPI.MarketTools
         {
             var data = GetData<IDictionary<string, MarketData>>("returnTicker");
             return data.ToDictionary(
-                x => x.Key.ToCurrencyPair(),
+                x => CurrencyPair.Parse(x.Key),
                 x => (IMarketData)x.Value
             );
         }

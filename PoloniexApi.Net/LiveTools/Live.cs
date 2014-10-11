@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 using WampSharp.V2;
 
 namespace Jojatekok.PoloniexAPI.LiveTools
@@ -51,7 +52,7 @@ namespace Jojatekok.PoloniexAPI.LiveTools
 
         private void ProcessMessageTicker(ISerializedValue[] arguments)
         {
-            var currencyPair = arguments[0].Deserialize<string>().ToCurrencyPair();
+            var currencyPair = CurrencyPair.Parse(arguments[0].Deserialize<string>());
             var priceLast = arguments[1].Deserialize<double>();
             var orderTopSell = arguments[2].Deserialize<double>();
             var orderTopBuy = arguments[3].Deserialize<double>();
@@ -86,7 +87,7 @@ namespace Jojatekok.PoloniexAPI.LiveTools
             var messageType = arguments[0].Deserialize<string>();
             var messageNumber = arguments[1].Deserialize<ulong>();
             var senderName = arguments[2].Deserialize<string>();
-            var messageText = arguments[3].Deserialize<string>();
+            var messageText = HttpUtility.HtmlDecode(arguments[3].Deserialize<string>());
             var senderReputation = arguments[4].Deserialize<uint>();
 
             OnTrollboxMessage(this, new TrollboxMessageEventArgs(senderName, senderReputation, messageType, messageNumber, messageText));
