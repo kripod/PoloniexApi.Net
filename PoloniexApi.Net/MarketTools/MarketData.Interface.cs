@@ -12,5 +12,7 @@
         double OrderTopSell { get; }
         double OrderSpread { get; }
         double OrderSpreadPercentage { get; }
+
+        bool IsFrozen { get; }
     }
 }

@@ -14,9 +14,11 @@ namespace Jojatekok.PoloniexAPI
 {
     public static class Helper
     {
-        internal const string ApiUrlBase = "https://poloniex.com/";
-        internal const string ApiUrlRelativePublic = "public?command=";
-        internal const string ApiUrlRelativeTrading = "tradingApi";
+        internal const string ApiUrlHttpsBase = "https://poloniex.com/";
+        internal const string ApiUrlHttpsRelativePublic = "public?command=";
+        internal const string ApiUrlHttpsRelativeTrading = "tradingApi";
+
+        internal const string ApiUrlWssBase = "wss://api.poloniex.com";
 
         private const int DoubleRoundingPrecisionDigits = 8;
 

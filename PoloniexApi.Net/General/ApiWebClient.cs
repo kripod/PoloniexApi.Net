@@ -50,7 +50,7 @@ namespace Jojatekok.PoloniexAPI
             postData.Add("command", command);
             postData.Add("nonce", Helper.GetCurrentHttpPostNonce());
 
-            var jsonString = PostString(Helper.ApiUrlRelativeTrading, postData.ToHttpPostString());
+            var jsonString = PostString(Helper.ApiUrlHttpsRelativeTrading, postData.ToHttpPostString());
             var output = JsonSerializer.DeserializeObject<T>(jsonString);
 
             return output;

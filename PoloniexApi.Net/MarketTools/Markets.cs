@@ -88,7 +88,7 @@ namespace Jojatekok.PoloniexAPI.MarketTools
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private T GetData<T>(string command, params object[] parameters)
         {
-            return ApiWebClient.GetData<T>(Helper.ApiUrlRelativePublic + command, parameters);
+            return ApiWebClient.GetData<T>(Helper.ApiUrlHttpsRelativePublic + command, parameters);
         }
     }
 }
