@@ -84,13 +84,12 @@ namespace Jojatekok.PoloniexAPI.LiveTools
         {
             if (OnTrollboxMessage == null) return;
 
-            var messageType = arguments[0].Deserialize<string>();
             var messageNumber = arguments[1].Deserialize<ulong>();
             var senderName = arguments[2].Deserialize<string>();
             var messageText = HttpUtility.HtmlDecode(arguments[3].Deserialize<string>());
-            var senderReputation = arguments[4].Deserialize<uint>();
+            var senderReputation = arguments.Length >= 5 ? arguments[4].Deserialize<uint?>() : null;
 
-            OnTrollboxMessage(this, new TrollboxMessageEventArgs(senderName, senderReputation, messageType, messageNumber, messageText));
+            OnTrollboxMessage(this, new TrollboxMessageEventArgs(senderName, senderReputation, messageNumber, messageText));
         }
     }
 }
