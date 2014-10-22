@@ -72,11 +72,11 @@
     <Reference Include="System.Web" />
     <Reference Include="WampSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WampSharp.1.2.0.1-beta\lib\net45\WampSharp.dll</HintPath>
+      <HintPath>..\packages\WampSharp.1.2.0.2-beta\lib\net45\WampSharp.dll</HintPath>
     </Reference>
     <Reference Include="WampSharp.Default, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WampSharp.Default.1.2.0.1-beta\lib\net45\WampSharp.Default.dll</HintPath>
+      <HintPath>..\packages\WampSharp.Default.1.2.0.2-beta\lib\net45\WampSharp.Default.dll</HintPath>
     </Reference>
     <Reference Include="WebSocket4Net">
       <HintPath>..\packages\WebSocket4Net.0.10\lib\net45\WebSocket4Net.dll</HintPath>

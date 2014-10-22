@@ -10,6 +10,11 @@ namespace Jojatekok.PoloniexAPI
         /// <summary>Occurs when someone sends a message on the trollbox.</summary>
         event EventHandler<TrollboxMessageEventArgs> OnTrollboxMessage;
 
+        /// <summary>Initializes the live feed.</summary>
+        void Start();
+        /// <summary>Disposes the live feed.</summary>
+        void Stop();
+
         /// <summary>Starts the process of receiving price ticker messages.</summary>
         Task SubscribeToTickerAsync();
         /// <summary>Starts the process of receiving trollbox messages.</summary>

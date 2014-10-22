@@ -28,10 +28,15 @@ namespace Jojatekok.PoloniexAPI.LiveTools
             get { return _tickers; }
         }
 
-        internal Live()
+        public void Start()
         {
             WampChannel = new DefaultWampChannelFactory().CreateJsonChannel(Helper.ApiUrlWssBase, "realm1");
             WampChannelOpenTask = WampChannel.Open();
+        }
+
+        public void Stop()
+        {
+            WampChannel.Close();
         }
 
         public async Task SubscribeToTickerAsync()
