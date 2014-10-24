@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using WampSharp.V2;
+using WampSharp.V2.Realm;
 
 namespace Jojatekok.PoloniexAPI.LiveTools
 {
@@ -31,12 +32,51 @@ namespace Jojatekok.PoloniexAPI.LiveTools
         public void Start()
         {
             WampChannel = new DefaultWampChannelFactory().CreateJsonChannel(Helper.ApiUrlWssBase, "realm1");
+            WampChannel.RealmProxy.Monitor.ConnectionBroken += OnConnectionBroken;
+
             WampChannelOpenTask = WampChannel.Open();
         }
 
         public void Stop()
         {
+            foreach (var subscription in ActiveSubscriptions.Values) {
+                subscription.Dispose();
+            }
+            ActiveSubscriptions.Clear();
+
             WampChannel.Close();
+        }
+
+        private void OnConnectionBroken(object sender, WampSessionCloseEventArgs e)
+        {
+            if (e.CloseType != SessionCloseType.Disconnection) {
+                var subscriptions = new string[ActiveSubscriptions.Count];
+                var i = 0;
+                foreach (var subjectName in ActiveSubscriptions.Keys) {
+                    subscriptions[i] = subjectName;
+                    i++;
+                }
+                ActiveSubscriptions.Clear();
+
+                // Re-initialize WampChannel
+                Start();
+
+                // Re-subscribe to subjects
+#pragma warning disable 4014
+                for (var j = subscriptions.Length - 1; j >= 0; j--) {
+                    var subjectName = subscriptions[j];
+                    switch (subjectName) {
+                        case SubjectNameTicker:
+                            SubscribeToTickerAsync();
+                            break;
+
+                        case SubjectNameTrollbox:
+                            SubscribeToTrollboxAsync();
+                            break;
+                    }
+                }
+#pragma warning restore 4014
+            }
         }
 
         public async Task SubscribeToTickerAsync()
