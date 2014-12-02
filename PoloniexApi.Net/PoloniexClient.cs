@@ -35,7 +35,7 @@ namespace Jojatekok.PoloniexAPI
         }
 
         /// <summary>Creates a new, unauthorized instance of Poloniex API .NET's client service.</summary>
-        public PoloniexClient() : this(null, null)
+        public PoloniexClient() : this("", "")
         {
 
         }

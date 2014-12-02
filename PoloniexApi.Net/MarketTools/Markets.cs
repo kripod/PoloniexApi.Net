@@ -24,7 +24,7 @@ namespace Jojatekok.PoloniexAPI.MarketTools
             );
         }
 
-        public IOrderBook GetOpenOrders(CurrencyPair currencyPair, uint depth)
+        private IOrderBook GetOpenOrders(CurrencyPair currencyPair, uint depth)
         {
             var data = GetData<OrderBook>(
                 "returnOrderBook",
@@ -34,7 +34,7 @@ namespace Jojatekok.PoloniexAPI.MarketTools
             return data;
         }
 
-        public IList<ITrade> GetTrades(CurrencyPair currencyPair)
+        private IList<ITrade> GetTrades(CurrencyPair currencyPair)
         {
             var data = GetData<IList<Trade>>(
                 "returnTradeHistory",
@@ -43,7 +43,18 @@ namespace Jojatekok.PoloniexAPI.MarketTools
             return new List<ITrade>(data);
         }
 
-        public IList<IMarketChartData> GetChartData(CurrencyPair currencyPair, MarketPeriod period, DateTime startTime, DateTime endTime)
+        private IList<ITrade> GetTrades(CurrencyPair currencyPair, DateTime startTime, DateTime endTime)
+        {
+            var data = GetData<IList<Trade>>(
+                "returnTradeHistory",
+                "currencyPair=" + currencyPair,
+                "start=" + Helper.DateTimeToUnixTimeStamp(startTime),
+                "end=" + Helper.DateTimeToUnixTimeStamp(endTime)
+            );
+            return new List<ITrade>(data);
+        }
+
+        private IList<IMarketChartData> GetChartData(CurrencyPair currencyPair, MarketPeriod period, DateTime startTime, DateTime endTime)
         {
             var data = GetData<IList<MarketChartData>>(
                 "returnChartData",
@@ -68,6 +79,11 @@ namespace Jojatekok.PoloniexAPI.MarketTools
         public Task<IList<ITrade>> GetTradesAsync(CurrencyPair currencyPair)
         {
             return Task.Factory.StartNew(() => GetTrades(currencyPair));
+        }
+
+        public Task<IList<ITrade>> GetTradesAsync(CurrencyPair currencyPair, DateTime startTime, DateTime endTime)
+        {
+            return Task.Factory.StartNew(() => GetTrades(currencyPair, startTime, endTime));
         }
 
         public Task<IList<IMarketChartData>> GetChartDataAsync(CurrencyPair currencyPair, MarketPeriod period, DateTime startTime, DateTime endTime)
