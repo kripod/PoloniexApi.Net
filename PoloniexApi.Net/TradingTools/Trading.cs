@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace Jojatekok.PoloniexAPI.TradingTools
             };
 
             var data = PostData<IList<Order>>("returnOpenOrders", postData);
-            return (IList<IOrder>)data;
+            return data.Any() ? data.ToList<IOrder>() : new List<IOrder>();
         }
 
         private IList<ITrade> GetTrades(CurrencyPair currencyPair, DateTime startTime, DateTime endTime)
@@ -34,7 +35,7 @@ namespace Jojatekok.PoloniexAPI.TradingTools
             };
 
             var data = PostData<IList<Trade>>("returnTradeHistory", postData);
-            return (IList<ITrade>)data;
+            return data.Any() ? data.ToList<ITrade>() : new List<ITrade>();
         }
 
         private ulong PostOrder(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote)
