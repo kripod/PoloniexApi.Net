@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -19,7 +20,8 @@ namespace Jojatekok.PoloniexAPI.WalletTools
             var postData = new Dictionary<string, object>();
 
             var data = PostData<IDictionary<string, IBalance>>("returnCompleteBalances", postData);
-            return data;
+            var result = data.ToDictionary(k => k.Key, v => v.Value as IBalance);
+            return result;
         }
 
         private IDictionary<string, string> GetDepositAddresses()
