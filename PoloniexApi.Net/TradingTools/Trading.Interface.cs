@@ -26,7 +26,7 @@ namespace Jojatekok.PoloniexAPI
         /// <param name="type">Type of the order.</param>
         /// <param name="pricePerCoin">The price to trade your coins at, compared to the base currency.</param>
         /// <param name="amountQuote">The amount of quote you want to trade.</param>
-        Task<ulong> PostOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote);
+        Task<string> PostOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote);
 
         /// <summary>
         ///     <para>Cancels an open order identified by the order ID.</para>
@@ -35,5 +35,12 @@ namespace Jojatekok.PoloniexAPI
         /// <param name="currencyPair">The currency pair, which consists of the currency being traded on the market, and the base's code.</param>
         /// <param name="orderId">The ID of the order to cancel.</param>
         Task<bool> DeleteOrderAsync(CurrencyPair currencyPair, ulong orderId);
+
+        /// <summary>Submits a new order to the market.</summary>
+        /// <param name="currencyPair">The currency pair, which consists of the currency being traded on the market, and the base's code.</param>
+        /// <param name="type">Type of the order.</param>
+        /// <param name="pricePerCoin">The price to trade your coins at, compared to the base currency.</param>
+        /// <param name="amountQuote">The amount of quote you want to trade.</param>
+        Task<string> PostMarginOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote, double lendingRate);
     }
 }

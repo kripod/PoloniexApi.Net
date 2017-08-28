@@ -38,7 +38,7 @@ namespace Jojatekok.PoloniexAPI.TradingTools
             return data.Any() ? data.ToList<ITrade>() : new List<ITrade>();
         }
 
-        private ulong PostOrder(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote)
+        private string PostOrder(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote)
         {
             var postData = new Dictionary<string, object> {
                 { "currencyPair", currencyPair },
@@ -47,7 +47,26 @@ namespace Jojatekok.PoloniexAPI.TradingTools
             };
 
             var data = PostData<JObject>(type.ToStringNormalized(), postData);
-            return data.Value<ulong>("orderNumber");
+            if(data.Value<string>("error") != null)
+                return data.Value<string>("error");
+
+            return data.Value<string>("orderNumber");
+        }
+
+        private string PostMarginOrder(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote, double lendingRate)
+        {
+            var postData = new Dictionary<string, object> {
+                { "currencyPair", currencyPair },
+                { "rate", pricePerCoin.ToStringNormalized() },
+                { "amount", amountQuote.ToStringNormalized() },
+                { "lendingRate", lendingRate.ToStringNormalized() }
+            };
+
+            var data = PostData<JObject>(type.ToStringNormalized(), postData);
+            if (data.Value<string>("error") != null)
+                return data.Value<string>("error");
+
+            return data.Value<string>("orderNumber");
         }
 
         private bool DeleteOrder(CurrencyPair currencyPair, ulong orderId)
@@ -76,9 +95,14 @@ namespace Jojatekok.PoloniexAPI.TradingTools
             return Task.Factory.StartNew(() => GetTrades(currencyPair, Helper.DateTimeUnixEpochStart, DateTime.MaxValue));
         }
 
-        public Task<ulong> PostOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote)
+        public Task<string> PostOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote)
         {
             return Task.Factory.StartNew(() => PostOrder(currencyPair, type, pricePerCoin, amountQuote));
+        }
+
+        public Task<string> PostMarginOrderAsync(CurrencyPair currencyPair, OrderType type, double pricePerCoin, double amountQuote, double lendingRate)
+        {
+            return Task.Factory.StartNew(() => PostMarginOrder(currencyPair, type, pricePerCoin, amountQuote, lendingRate));
         }
 
         public Task<bool> DeleteOrderAsync(CurrencyPair currencyPair, ulong orderId)
