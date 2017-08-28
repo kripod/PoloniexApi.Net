@@ -76,6 +76,12 @@ namespace Jojatekok.PoloniexAPI
 
                 case OrderType.Sell:
                     return "sell";
+
+                case OrderType.MarginBuy:
+                    return "marginBuy";
+
+                case OrderType.MarginSell:
+                    return "marginSell";
             }
 
             throw new ArgumentOutOfRangeException("value");
@@ -89,6 +95,12 @@ namespace Jojatekok.PoloniexAPI
 
                 case "sell":
                     return OrderType.Sell;
+
+                case "marginbuy":
+                    return OrderType.MarginBuy;
+
+                case "marginsell":
+                    return OrderType.MarginSell;
             }
 
             throw new ArgumentOutOfRangeException("value");

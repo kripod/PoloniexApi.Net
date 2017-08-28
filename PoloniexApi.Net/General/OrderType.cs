@@ -4,6 +4,8 @@
     public enum OrderType
     {
         Buy,
-        Sell
+        Sell,
+        MarginBuy,
+        MarginSell
     }
 }
